@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+<title>CSS3 Shelving</title>
+<!-- NOTES 4/1/14
+Can't use margin in custom shelf-face div or it will mess up alignments
+why does the back-wall back img stop repeating eventually?
+-->
+<link rel='stylesheet' href='cssshelf.css' type='text/css' media='all' />
+<script type='text/javascript' src="jquery-1.11.0.min.js"></script>
+<!-- <script type='text/javascript' src='../drupal/sites/all/modules/shelves/constructions.js'></script> -->
+<script type='text/javascript' src='cssshelf.js' id="cssshelf" ></script>
+
+<script type="text/javascript">
+
+//shelvesControl = 'HTML';
+medium = constructions[0];
+//alert(constructions[1].title);
+
+//setInterval(next, 5000);
+var i = 0;
+function next() {
+i++;
+medium = constructions[i];
+update();
+}
+
+</script>
+
+</head><body style="margin: 9px;">
+
+<div id="location" style="overflow: scroll; position: fixed; top:0px; left:0px; color: white; z-index:100; background-color: black;"></div>
+
+
+<div class="shelves">
+
+<div class = "shelf">
+Design:
+<select class="designx" id="designx" name="designx" onChange="chDesign()"></select><br>
+<span style="font-size: 10px;">These are various designs I have come up with that demonstrate the possibilities of different shelving that this tool is capable of creating.</span>
+<br>
+<!-- Tiles High: <input class="tilesTallInput" name="tilesTallInput" id="tilesTallInput"><br> -->
+<br>
+<!-- <input type="button" class="inset" value="Inset" onClick="setPram(['makeInset','makeTop'],[1,0])"><input type="button" class="outset" value="Outset" onClick="setPram(['makeInset','makeTop'],[0,1])"><br> -->
+
+<!-- <input type="button" class="mbwall" value="With Back Wall" onClick="setPram(['backwall'],[1])"><input type="button" class="mbwall" value="Without Back Wall" onClick="setPram(['backwall'],[0])"><br> -->
+
+Top Space: <input class="topspaceInput" name="topspaceInput" id="topspaceInput" onChange="changePram('topspace',0,'topspaceInput','NA')" size="3">*
+Shadow Length: <input class="shadowLInput" name="shadowLInput" id="shadowLInput" onChange="changePram('shadowlength',0,'shadowLInput','NA')" size="3">*
+Background Color: <input class="cBcInput" name="cBcInput" id="cBcInput" onChange="changePram('containerbackground',0,'cBcInput','NA')"><br>
+Show Top: <input type="checkbox" id="showtop" class="showtop" onClick="togPram('.showtop','toptop')"><br>
+Show Top Face: <input type="checkbox" id="showtopface" class="showtopface" onClick="togPram('.showtopface','topface')"><br>
+Show Side Trim: <input type="checkbox" id="showtrim" class="showtrim" onClick="togPram('.showtrim','trim')"><br>
+Show Back Wall: <input type="checkbox" id="backwall" class="backwall" onClick="togPram('.backwall','backwall')"><br>
+
+<br>
+Build Type: <input type="radio" name="makesquare" id="makesquareTrue" value="1" onClick="setPram(['makesquare'],[1])"> Use Tiles <input type="radio" name="makesquare" id="makesquareFalse" value="0" onClick="setPram(['makesquare'],[0])"> No Tiles<br>
+<div id="tileoptions">
+Tiles Size: <input class="tilesAcrossInput" name="tilesAcrossInput" id="tilesAcrossInput" onChange="changePram('unitwidth',0,'tilesAcrossInput',0)"><br>
+<input type="button" value="-" onClick="changePram('unitwidth',-1,'tilesAcrossInput',0)"><input type="button" value="+" onClick="changePram('unitwidth',1,'tilesAcrossInput',0)"><br>
+Tile Across: <input class="tileSizeInput" name="tileSizeInput" id="tileSizeInput" onChange="changePram('unitspan',0,'tileSizeInput',0)">px<br>
+<input type="button" value="-" onClick="changePram('unitspan',-1,'tileSizeInput',0)"><input type="button" value="+" onClick="changePram('unitspan',1,'tileSizeInput',0)"><br>
+Align Squares: <input type="checkbox" id="alignsquares" class="alignsquares" onClick="togPram('.alignsquares','alignsquares')"><br>
+
+</div>
+<div id="pixelwidth">
+Width: <input id="pixelwidth" class="pixelwidth" onChange="changePram('pixelwidth',0,'pixelwidth',0)">px
+</div>
+<br><br>
+Shelf Depth: <input class="shelfDepthInput" name="shelfDepthInput" id="shelfDepthInput" onChange="changePram('shelfdepth',0,'shelfDepthInput',0)">px<br>
+<input type="button" value="-" onClick="changePram('shelfdepth',-1,'shelfDepthInput',0)"><input type="button" value="+" onClick="changePram('shelfdepth',1,'shelfDepthInput',0)"><br>
+Shelf Padding: <input class="contentpadding" name="contentpadding" id="contentpadding" onChange="changePram('contentpadding',0,'contentpadding',0)">px<br>
+<input type="button" value="-" onClick="changePram('contentpadding',-1,'contentpadding',0)"><input type="button" value="+" onClick="changePram('contentpadding',1,'contentpadding',0)"><br>
+Trim Width: <input class="trimWidthInput" name="trimWidthInput" id="trimWidthInput" onChange="changePram('trimwidth',0,'trimWidthInput',0)">px<br>
+<input type="button" value="-" onClick="changePram('trimwidth',-1,'trimWidthInput',0)"><input type="button" value="+" onClick="changePram('trimwidth',1,'trimWidthInput',0)"><br>
+Shelf Face Height: <input class="faceHeightInput" name="faceHeightInput" id="faceHeightInput" onChange="changePram('faceheight',0,'faceHeightInput',0)">px<br>
+<input type="button" value="-" onClick="changePram('faceheight',-1,'faceHeightInput',0)"><input type="button" value="+" onClick="changePram('faceheight',1,'faceHeightInput',0)"><br>
+Top Face Height: <input class="topFaceHeightInput" name="topFaceHeightInput" id="topFaceHeightInput" onChange="changePram('topfaceheight',0,'topFaceHeightInput',0)">px<br>
+<input type="button" value="-" onClick="changePram('topfaceheight',-1,'topFaceHeightInput',0)"><input type="button" value="+" onClick="changePram('topfaceheight',1,'topFaceHeightInput',0)"><br>
+<br><br>
+Content Wrapper <input type="checkbox" id="contentwrap" name="contentwrap" onClick="togPram('#contentwrap','contentwrap')"><br>
+<div id="contentwrapdiv">
+Content Hangers <input type="checkbox" id="contenthangers" name="contenthangers" onClick="togPram('#contenthangers','contenthangers')"><br>
+Content Swing On Page Load<input type="checkbox" id="contentswingonload" name="contentswingonload" onClick="togPram('#contentswingonload','contentswingonload')"><br>
+Content Swing On Mouse Hover<input type="checkbox" id="contentswingonhover" name="contentswingonhover" onClick="togPram('#contentswingonhover','contentswingonhover')"><br>
+Content Wrap Prefix:<br>
+<textarea name="contentprefix" id="contentprefix" class="contentprefix" rows="3" cols="30" onChange="changePram('contentprefix',0,'contentprefix',0)"></textarea><br>
+Content Wrap Suffix:<br>
+<textarea name="contentsuffix" id="contentsuffix" class="contentsuffix" rows="3" cols="30" onChange="changePram('contentsuffix',0,'contentsuffix',0)"></textarea>
+</div>
+<br>
+<br>
+Background Image Sizes:<br>
+Trim Back Img Size: W<input class="trimbiw" size=3 onChange="changePram('trimbiw',0,'trimbiw','0')">H<input class="trimbih" size=3 onChange="changePram('trimbih',0,'trimbih','0')"><br>
+Shelf Face Back Img Size: W<input class="facebiw" size=3 onChange="changePram('facebiw',0,'facebiw','0')">H<input class="facebih" size=3 onChange="changePram('facebih',0,'facebih','0')"><br>
+Back Back Img Size: W<input class="backbiw" size=3 onChange="changePram('backbiw',0,'backbiw','0')">H<input class="backbih" size=3 onChange="changePram('backbih',0,'backbih','0')"><br>
+Inside Vertical Back Img Size: W<input class="verticalbiw" size=3 onChange="changePram('verticalbiw',0,'verticalbiw','0')">H<input class="verticalbih" size=3 onChange="changePram('verticalbih',0,'verticalbih','0')"><br>
+Inside Bottom Back Img Size: W<input class="bottombiw" size=3 onChange="changePram('bottombiw',0,'bottombiw','0')">H<input class="bottombih" size=3 onChange="changePram('bottombih',0,'bottombih','0')"><br>
+Back Wall Back Img Size: W<input class="backwallbiw" size=3 onChange="changePram('backwallbiw',0,'backwallbiw','NA')">H<input class="backwallbih" size=3 onChange="changePram('backwallbih',0,'backwallbih','NA')"><br>
+Top Top Back Img Size: W<input class="toptopbiw" size=3 onChange="changePram('toptopbiw',0,'toptopbiw','0')">H<input class="toptopbih" size=3 onChange="changePram('toptopbih',0,'toptopbih','0')"><br>
+Top Face Back Img Size: W<input class="topfacebiw" size=3 onChange="changePram('topfacebiw',0,'topfacebiw','0')">H<input class="topfacebih" size=3 onChange="changePram('topfacebih',0,'topfacebih','0')"><br>
+
+<br>
+Images: (absolute or relative url)<br>
+Back Wall: <input class="imgAInput" name="imgAInput" id="imgAInput" onChange="changePram('backwallimg',0,'imgAInput','NA')"><br>
+Left Trim: <input class="imgBInput" name="imgBInput" id="imgBInput" onChange="changePram('trimleftimg',0,'imgBInput','NA')"><br>
+Right Trim: <input class="imgJInput" name="imgJInput" id="imgJInput" onChange="changePram('trimrightimg',0,'imgJInput','NA')"><br>
+Shelf Face: <input class="imgCInput" name="imgCInput" id="imgCInput" onChange="changePram('faceimg',0,'imgCInput','NA')"><br>
+Inside Left: <input class="imgDInput" name="imgDInput" id="imgDInput" onChange="changePram('verticalleftimg',0,'imgDInput','NA')"><br>
+Inside Right: <input class="imgEInput" name="imgEInput" id="imgEInput" onChange="changePram('verticalrightimg',0,'imgEInput','NA')"><br>
+Inside Back: <input class="imgFInput" name="imgFInput" id="imgFInput" onChange="changePram('backimg',0,'imgFInput','NA')"><br>
+Top Face: <input class="imgGInput" name="imgGInput" id="imgGInput" onChange="changePram('topfaceimg',0,'imgGInput','NA')"><br>
+Top Top: <input class="imgHInput" name="imgHInput" id="imgHInput" onChange="changePram('toptopimg',0,'imgHInput','NA')"><br>
+Inside Bottom: <input class="imgIInput" name="imgIInput" id="imgIInput" onChange="changePram('bottomimg',0,'imgIInput','NA')"><br>
+
+<br>
+Perspective Change On Scroll: <input type="checkbox" id="perspectivechng" name="perspectivechng" onClick="cleanperspective()"><br>
+<span style="font-size: 10px;">Having this option on while changing designs and parameters will cause problems. But once you've picked a design you like turn this option on and then pay attention to the shelves as you scroll down.</span><br>
+<br><br>
+
+Title: <input class="title" name="title" id="title" onChange="changePram('title',0,'title','NA')"><br>
+
+<input type="button" value="Save" onClick="save()"><div style="display: inline;" id="saver"></div>
+<br /><br /><input type="button" value="Download source files for this design" onClick="downloadDesign()">
+
+<br /><br /><input type="button" value="Delete" onClick="deleteDesign()">
+<div class="shelf-face"><div style="color: white;">WHAT ABOUT ME!!<br>Wha<br>t uf I want<br><br><br><br><br>this to be bigger</div></div>
+</div>
+<div class="shelf">
+                      <img src="EuropeParis160.JPG" style="width: 50%; border-radius: 10px;" alt="Paris, France" />
+                      <br />
+                      <span>Hmm... .</span>
+                      <div style="height: 300px; outline-style: solid; outline-width: 1px; outline-color:yellow;">MY SPACE MAKER
+                      DIV</div>
+</div>
+
+<div class="shelf">
+	<p>
+Esca os valde. Ad laoreet modo oppeto patria quidem wisi. Comis nulla obruo pertineo praesent te utinam velit vero verto. Consectetuer gravis iaceo iustum laoreet natu patria quibus uxor. Brevitas interdico patria. Commodo damnum dolus quidem. Pertineo quidne tation tincidunt valetudo. Cui metuo quidne ulciscor utrum validus. Iusto utrum veniam vulpes. Damnum modo secundum. Abbas augue facilisi ibidem olim plaga quidem virtus.
+</p><p>
+Elit hendrerit iaceo ille jugis modo. Minim paulatim quadrum. Inhibeo patria proprius velit. Abigo autem jus letalis quibus vulpes. Aliquip dignissim importunus valde. Aliquip consequat gemino illum nulla quia tum velit. Consequat feugiat in luctus metuo nostrud secundum similis.
+</p><p>
+
+Augue autem interdico os proprius tamen. Antehabeo dolore hendrerit macto utrum vero. Bene brevitas capto eros immitto quidem sed sudo vulpes. Aliquam commodo ille iriure lenis rusticus.
+</p><p>
+
+Abluo aliquam cui eros esca populus premo typicus ymo. Damnum macto melior pagus. Abbas dolus in incassum macto meus scisco. Caecus conventio suscipere. Abluo antehabeo erat ibidem persto praemitto quae ymo.
+
+</p>
+</div>
+<div class="shelf">
+                      <img src="EuropeParis160.JPG" style="width: 50%; border-radius: 10px;" alt="Paris, France" />
+                      <br />
+                      <span>Hmm... .</span>
+                      <div style="height: 1000px; outline-style: solid; outline-width: 1px; outline-color:yellow;">MY SPACE MAKER
+                      DIV</div>
+</div>
+
+<div class="shelf">
+                      <img src="EuropeParis160.JPG" style="width: 50%; border-radius: 10px;" alt="Paris, France" />
+                      <br />
+                      <span>Hmm... .</span>
+                      <div style="height: 400px; outline-style: solid; outline-width: 1px; outline-color:yellow;">MY SPACE MAKER
+                      DIV</div>
+</div>
+
+<div class="shelf">
+                      <span>Hmm... .</span>
+                      <div style="height: 20px; outline-style: solid; outline-width: 1px; outline-color:yellow;">MY SPACE MAKER
+                      DIV</div>
+</div>
+<div class="shelf">
+                      <span>Hmm... .</span>
+                      <div style="height: 20px; outline-style: solid; outline-width: 1px; outline-color:yellow;">MY SPACE MAKER
+                      DIV</div>
+</div>
+<div class="shelf">
+                      <span>Hmm... .</span>
+                      <div style="height: 20px; outline-style: solid; outline-width: 1px; outline-color:yellow;">MY SPACE MAKER
+                      DIV</div>
+
+<div class="shelf-face"><img src="IMG_9871.JPG"></div>
+</div>
+
+<div class="shelf">
+                      <img src="EuropeParis160.JPG" style="width: 50%; border-radius: 10px;" alt="Paris, France" />
+                      <br />
+                      <span>Hmm... .</span>
+                      <div style="height: 500px; outline-style: solid; outline-width: 1px; outline-color:yellow;">MY SPACE MAKER
+                      DIV</div>
+</div>
+
+<div class="shelf">
+                      <img src="EuropeParis160.JPG" style="width: 50%; border-radius: 10px;" alt="Paris, France" />
+                      <br />
+                      <span>Hmm... .</span>
+                      <div style="height: 40px; outline-style: solid; outline-width: 1px; outline-color:yellow;">MY SPACE MAKER
+                      DIV</div>
+<div class="shelf-face"><div  style="margin: auto; width:400px; padding-top: 300px; outline-style:solid;outline-width:1px;outline-color:yellow; color:white;"><img src="IMG_9871.JPG" style="width:50%;"><p>This is working pretty good.</p></div></div>
+
+</div>
+
+
+<div class="shelf">
+                      <img src="EuropeParis160.JPG" style="width: 50%; border-radius: 10px;" alt="Paris, France" />
+                      <br />
+                      <span>Hmm... .</span>
+                      <div style="height: 2000px; outline-style: solid; outline-width: 1px; outline-color:yellow;">MY SPACE MAKER
+                      DIV</div>
+</div>
+
+</div>
+
+	<p>
+Esca os valde. Ad laoreet modo oppeto patria quidem wisi. Comis nulla obruo pertineo praesent te utinam velit vero verto. Consectetuer gravis iaceo iustum laoreet natu patria quibus uxor. Brevitas interdico patria. Commodo damnum dolus quidem. Pertineo quidne tation tincidunt valetudo. Cui metuo quidne ulciscor utrum validus. Iusto utrum veniam vulpes. Damnum modo secundum. Abbas augue facilisi ibidem olim plaga quidem virtus.
+</p><p>
+Elit hendrerit iaceo ille jugis modo. Minim paulatim quadrum. Inhibeo patria proprius velit. Abigo autem jus letalis quibus vulpes. Aliquip dignissim importunus valde. Aliquip consequat gemino illum nulla quia tum velit. Consequat feugiat in luctus metuo nostrud secundum similis.
+</p><p>
+
+Augue autem interdico os proprius tamen. Antehabeo dolore hendrerit macto utrum vero. Bene brevitas capto eros immitto quidem sed sudo vulpes. Aliquam commodo ille iriure lenis rusticus.
+</p><p>
+
+Abluo aliquam cui eros esca populus premo typicus ymo. Damnum macto melior pagus. Abbas dolus in incassum macto meus scisco. Caecus conventio suscipere. Abluo antehabeo erat ibidem persto praemitto quae ymo.
+
+</p>
+<div id="data"></div>
+</body></html>

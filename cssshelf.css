@@ -1,0 +1,433 @@
+/*
+CSS Shelves - js/css program for the design and use of 3D shelving systems in the display of web content.
+Copyright (C) 2014  Michael S. Wright, michael@ms-wright.com, http://ms-wright.com
+
+This program is free software; you can redistribute it and/or
+modify it under the terms of the GNU General Public License
+as published by the Free Software Foundation; either version 2
+of the License, or any later version.
+
+This program is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+GNU General Public License for more details.
+
+You should have received a copy of the GNU General Public License
+along with this program; if not, write to the Free Software
+Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
+*/
+
+.shelf-parent {
+	position: relative;
+	margin: auto;
+	overflow: hidden;
+}
+
+.shelf {
+	z-index: 2;
+	position: relative;
+	margin: auto;
+}
+
+.shelf table, tbody, tr, td {
+	height: 100%;
+	width: 100%;
+	border-style: none !important;
+	outline-style: none !important; 
+	padding: 0px !important;
+	margin: 0px !important;
+}
+
+.shelf-vertical {
+	position: absolute;
+	height: 100%;
+	bottom: 0px;
+}
+
+.svleft {
+	left: 0px;
+	-webkit-transform-origin: left bottom;
+	-webkit-transform:  skew(0deg,-45deg);
+	transform-origin: left bottom;
+	transform:  skew(0deg,-45deg);
+	background-position: left bottom;
+}
+
+.svright {
+	right: 0px;
+	-webkit-transform-origin: right bottom;
+	-webkit-transform:  skew(0deg, 45deg);
+	transform-origin: right bottom;
+	transform:  skew(0deg, 45deg);
+	background-position: right bottom;
+}
+
+.shelf-vertical-shadow  {
+	position: absolute;
+	width: 100%;
+	top: 0px;
+}
+
+.svsleft {
+	background-image: -webkit-radial-gradient(top right, rgba(0,0,0,.8), rgba(0,0,0,.6), rgba(0,0,0,0), rgba(0,0,0,0));
+	background-image: -moz-radial-gradient(top right, rgba(0,0,0,.8), rgba(0,0,0,.6), rgba(0,0,0,0), rgba(0,0,0,0));
+}
+
+.svsright {
+	background-image: -webkit-radial-gradient(top left, rgba(0,0,0,.8), rgba(0,0,0,.6), rgba(0,0,0,0), rgba(0,0,0,0));
+	background-image: -moz-radial-gradient(top left, rgba(0,0,0,.8), rgba(0,0,0,.6), rgba(0,0,0,0), rgba(0,0,0,0));
+}
+
+.shelves-left-shadow {
+	position: absolute;
+	height: 100%;
+	width: 100px;
+	left: 0px;
+	bottom: 0px;
+	background-image: -webkit-linear-gradient(right, black, rgba(0,0,0,0));
+	background-image: -moz-linear-gradient(right, black, rgba(0,0,0,0));
+
+}
+
+.shelf-bottom-parent {
+	position: absolute;
+	z-index: 1;
+	left: 0px;
+	right: 0px;
+	margin-left: auto;
+	margin-right: auto;
+}
+
+.shelf-bottom-child {
+	width: 100%;
+	background-position: left bottom;
+	-webkit-transform: rotateX(45deg);
+	-moz-transform: rotateX(45deg);
+	-o-transform: rotateX(45deg);
+	-ms-transform: rotateX(45deg);
+	transform: rotateX(45deg);
+}
+
+.shelf-top-parent {
+	position: absolute;
+	z-index: 1;
+	top: 0px;
+	left: 0px;
+	right: 0px;
+	margin-left: auto;
+	margin-right: auto;
+}
+
+.shelf-top-child {
+	width: 100%;
+	background-position: left bottom;
+	-webkit-transform: rotateX(-45deg);
+	-moz-transform: rotateX(-45deg);
+	-o-transform: rotateX(-45deg);
+	-ms-transform: rotateX(-45deg);
+	transform: rotateX(-45deg);
+}
+
+.shelf-back {
+	position: absolute;
+	height: 100%;
+	background-position: left bottom;
+	left: 0px;
+	right: 0px;
+	margin-left: auto;
+	margin-right: auto;
+}
+
+.shelf-back-shadow {
+	position: absolute;
+	width: 100%;
+	background-image: -webkit-linear-gradient(top, black, rgba(0,0,0,0));
+	background-image: -moz-linear-gradient(top, black, rgba(0,0,0,0));
+	top: 0px;
+}
+
+.shelf-face {
+	width: 100%;
+	position: relative;
+	z-index: 1;
+	background-position: left top;
+}
+
+.shelves {
+	margin: auto;
+}
+
+.shelves-trim  {
+	display: table-cell;
+	position: relative;
+	height: 100%;
+}
+
+.stleft {
+	background-position: right top;
+}
+
+.shelves-trim-shadow {
+	position: absolute;
+	!width: 100px;
+	!height: 10105px;
+	!top: 191px;
+	!left: 110px;
+}
+
+
+.stsleft {
+	background-image: -webkit-linear-gradient(right, rgba(0,0,0,.2), rgba(0,0,0,0));
+	background-image: -moz-linear-gradient(right, rgba(0,0,0,.2), rgba(0,0,0,0));
+}
+
+.stsright {
+	background-image: -webkit-linear-gradient(left, rgba(0,0,0,.2), rgba(0,0,0,0));
+	background-image: -moz-linear-gradient(left, rgba(0,0,0,.2), rgba(0,0,0,0));
+}
+
+
+.shelves-table {
+	margin: auto;
+	display: table;
+}
+
+.shelves-table-row {
+	display: table-row;
+}
+
+.shelves-top-face {
+	position: relative;
+	margin: auto;
+	z-index: 1;
+}
+
+.shelves-top-top-parent {
+	position: relative;
+	margin: auto;
+	z-index: 1;
+}
+
+.shelves-top-top-child {
+	width: 100%;
+	-webkit-transform: rotateX(45deg);
+	-moz-transform: rotateX(45deg);
+	-o-transform: rotateX(45deg);
+	-ms-transform: rotateX(45deg);
+	transform: rotateX(45deg);
+}
+
+.shelf-wrap-holder {
+-webkit-perspective: 1px;
+perspective: 1px;
+}
+
+.shelf-wrap {
+margin: auto;
+color: #C6D7FA;
+width: 75%;
+border-radius: 20px;
+background-color: rgba(0,0,0,.6);
+box-shadow: 0px 12px 20px black;
+padding: 30px;
+}
+
+@-webkit-keyframes swing {
+from {
+-webkit-transform: rotateX(0.00deg);
+}
+20% {
+-webkit-transform: rotateX(0.002deg);
+}
+40% {
+-webkit-transform: rotateX(-0.002deg);
+}
+60% {
+-webkit-transform: rotateX(0.001deg);
+}
+80% {
+-webkit-transform: rotateX(-0.001deg);
+}
+to {
+-webkit-transform: rotateX(0.00deg);
+}
+}
+
+@keyframes swing {
+from {
+transform: rotateX(0.00deg);
+}
+20% {
+transform: rotateX(0.002deg);
+}
+40% {
+transform: rotateX(-0.002deg);
+}
+60% {
+transform: rotateX(0.001deg);
+}
+80% {
+transform: rotateX(-0.001deg);
+}
+to {
+transform: rotateX(0.00deg);
+}
+}
+
+@-webkit-keyframes swingh {
+from {
+-webkit-transform: rotateX(0.00deg);
+}
+20% {
+-webkit-transform: rotateX(0.002deg);
+}
+40% {
+-webkit-transform: rotateX(-0.002deg);
+}
+60% {
+-webkit-transform: rotateX(0.001deg);
+}
+80% {
+-webkit-transform: rotateX(-0.001deg);
+}
+to {
+-webkit-transform: rotateX(0.00deg);
+}
+}
+
+@keyframes swingh {
+from {
+transform: rotateX(0.00deg);
+}
+20% {
+transform: rotateX(0.002deg);
+}
+40% {
+transform: rotateX(-0.002deg);
+}
+60% {
+transform: rotateX(0.001deg);
+}
+80% {
+transform: rotateX(-0.001deg);
+}
+to {
+transform: rotateX(0.00deg);
+}
+}
+
+.sbcshadow {
+height: 100%;
+width: 100%;
+background-image: -webkit-linear-gradient(270deg, rgba(0,0,0,.7), rgba(0,0,0,0));
+background-image: -moz-linear-gradient(270deg, rgba(0,0,0,.7), rgba(0,0,0,0));
+}
+
+.svsleftbottom {
+	background-image: -webkit-radial-gradient(bottom right, rgba(0,0,0,.5), rgba(0,0,0,.3), rgba(0,0,0,0), rgba(0,0,0,0));
+	background-image: -moz-radial-gradient(bottom right, rgba(0,0,0,.5), rgba(0,0,0,.3), rgba(0,0,0,0), rgba(0,0,0,0));
+	width: 100%;
+	position: absolute;
+	bottom: 0px;
+}
+
+.svsleftright {
+	background-image: -webkit-linear-gradient(center right, rgba(0,0,0,.5), rgba(0,0,0,.3), rgba(0,0,0,0), rgba(0,0,0,0));
+	background-image: -moz-linear-gradient(center right, rgba(0,0,0,.5), rgba(0,0,0,.3), rgba(0,0,0,0), rgba(0,0,0,0));
+	width: 100%;
+	height: 100%;
+	position: absolute;
+	bottom: 0px;
+}
+
+.svsrightleft {
+	background-image: -webkit-linear-gradient(center left, rgba(0,0,0,.5), rgba(0,0,0,.3), rgba(0,0,0,0), rgba(0,0,0,0));
+	background-image: -moz-linear-gradient(center left, rgba(0,0,0,.5), rgba(0,0,0,.3), rgba(0,0,0,0), rgba(0,0,0,0));
+	width: 100%;
+	height: 100%;
+	position: absolute;
+	bottom: 0px;
+}
+
+.shelf-back-shadowleft {
+	background-image: -webkit-linear-gradient(center left, rgba(0,0,0,.5), rgba(0,0,0,.3), rgba(0,0,0,0), rgba(0,0,0,0));
+	background-image: -moz-linear-gradient(center left, rgba(0,0,0,.5), rgba(0,0,0,.3), rgba(0,0,0,0), rgba(0,0,0,0));
+	width: 20%;
+	height: 100%;
+	position: absolute;
+	bottom: 0px;
+	left: 0px;
+}
+
+.shelf-back-shadowright {
+	background-image: -webkit-linear-gradient(center right, rgba(0,0,0,.5), rgba(0,0,0,.3), rgba(0,0,0,0), rgba(0,0,0,0));
+	background-image: -moz-linear-gradient(center right, rgba(0,0,0,.5), rgba(0,0,0,.3), rgba(0,0,0,0), rgba(0,0,0,0));
+	width: 20%;
+	height: 100%;
+	position: absolute;
+	bottom: 0px;
+	right: 0px;
+}
+
+.svsrightbottom {
+	background-image: -webkit-radial-gradient(bottom left, rgba(0,0,0,.5), rgba(0,0,0,.3), rgba(0,0,0,0), rgba(0,0,0,0));
+	background-image: -moz-radial-gradient(bottom left, rgba(0,0,0,.5), rgba(0,0,0,.3), rgba(0,0,0,0), rgba(0,0,0,0));
+	width: 100%;
+	position: absolute;
+	bottom: 0px;
+}
+
+.shelf-back-shadow-bottom {
+	position: absolute;
+	bottom: 0px;
+	width: 100%;
+	background-image: -webkit-linear-gradient(bottom, rgba(0,0,0,.5), rgba(0,0,0,0));
+	background-image: -moz-linear-gradient(bottom, rgba(0,0,0,.5), rgba(0,0,0,0));
+}
+
+.hangers {
+position: relative;
+width: 100%;
+top: 0px;
+}
+
+.hangerleft {
+position: absolute;
+background-color: rgba(0,0,0,.5);
+width: 5px;
+height: 115px;
+top: 0px;
+left: 0px;
+-webkit-transform-origin: top;
+-webkit-transform: rotate(135deg);
+transform-origin: top;
+transform: rotate(135deg);
+border-radius: 2px;
+}
+
+.hangerright {
+position: absolute;
+background-color: rgba(0,0,0,.5);
+width: 5px;
+height: 115px;
+top: 0px;
+right:0px;
+-webkit-transform-origin: top;
+-webkit-transform: rotate(-135deg);
+transform-origin: top;
+transform: rotate(-135deg);
+border-radius: 2px;
+}
+
+/* These are here so the js file can add to them later */
+.shelf-back-wall {
+
+}
+
+.shelves-top-spacer {
+
+}
+
+.stright {
+
+}
